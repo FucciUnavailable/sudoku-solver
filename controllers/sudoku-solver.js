@@ -65,8 +65,7 @@ class SudokuSolver {
   }
   solve(puzzleString) {
     let problem = puzzleString;
-  
- 
+
     for (let i = 0; i < problem.length; i++) {
       if (problem[i] == ".") {
         for (let testNumber = 1; testNumber <= 9; testNumber++) {
@@ -79,14 +78,14 @@ class SudokuSolver {
             )
           ) {
             problem.splice(i, 1, testNumber);
-            if(this.solve(problem))return problem
-            problem[i] = "."
+            if (this.solve(problem)) return problem;
+            problem[i] = ".";
           }
         }
-        return false
+        return false;
       }
     }
-    return problem
+    return problem;
   }
 }
 

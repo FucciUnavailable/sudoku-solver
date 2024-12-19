@@ -15,17 +15,18 @@ module.exports = function (app) {
       if (!puzzle || !coordinate || !value) {
         return res.status(400).send({ error: 'Required field(s) missing' });
       }
-
+      if (puzzle.length !== 81){
+        return res.status(400).send({ error: 'Expected puzzle to be 81 characters long' });
+      }
       if (!/^[A-I][1-9]$/.test(coordinate)) {
-        return res.status(400).send({ error: 'Invalid coordinate' });
+        return res.status(400).send({ error: 'Invalid coordinate'});
       }
 
       if (!/^[1-9]$/.test(value)) {
         return res.status(400).send({ error: 'Invalid value' });
       }
-
-      if (puzzle.length !== 81 || /[^1-9\.]/.test(puzzle)) {
-        return res.status(400).send({ error: 'Invalid puzzle string' });
+      if (!/^[1-9.]+$/.test(puzzle)) {
+        return res.status(400).send({ error: 'Invalid characters in puzzle' });
       }
 
       const [row, column] = [coordinate[0], parseInt(coordinate[1])];
@@ -56,18 +57,20 @@ module.exports = function (app) {
       if (!puzzle) {
         return res.status(400).send({ error: 'Required field missing' });
       }
-
+      if (puzzle.length !== 81){
+        return res.status(400).send({ error: 'Expected puzzle to be 81 characters long' });
+      }
       if (puzzle.length !== 81 || /[^1-9\.]/.test(puzzle)) {
-        return res.status(400).send({ error: 'Invalid puzzle string' });
+        return res.status(400).send({ error: 'Invalid characters in puzzle' });
       }
 
       const parsedPuzzle = parsePuzzle(puzzle);
       const solution = solver.solve(parsedPuzzle);
-
+   
       if (!solution) {
         return res.status(400).send({ error: 'Puzzle cannot be solved' });
       }
 
-      res.send({ solution });
+      res.send({ "solution":solution.join('') });
     });
 };
