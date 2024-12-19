@@ -30,6 +30,9 @@ module.exports = function (app) {
       if (!/^[1-9.]+$/.test(puzzle)) {
         return res.status(400).send({ error: 'Invalid characters in puzzle' });
       }
+        if (!puzzle) {
+    return res.status(400).json({ error: 'Puzzle string is required' });
+  }
 
       const [row, column] = [coordinate[0], parseInt(coordinate[1])];
       const parsedPuzzle = parsePuzzle(puzzle);
