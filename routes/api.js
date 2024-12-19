@@ -33,6 +33,10 @@ module.exports = function (app) {
 
       const [row, column] = [coordinate[0], parseInt(coordinate[1])];
       const parsedPuzzle = parsePuzzle(puzzle);
+      const getIndex = solver.getIndexFromCoordinate(row, column)
+      if(puzzle[getIndex]===value){
+        return res.send({ valid: true });
+      }
 
       const rowValid = solver.checkRowPlacement(parsedPuzzle, row, column, value);
       const colValid = solver.checkColPlacement(parsedPuzzle, row, column, value);

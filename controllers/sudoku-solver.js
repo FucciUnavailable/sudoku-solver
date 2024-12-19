@@ -31,7 +31,10 @@ class SudokuSolver {
     }
     return graph;
   }
-
+  getIndexFromCoordinate(row,column){
+    let index = this.rowValue[row] + column - 1
+    return index
+  }
   // Validate the input puzzle string
   validate(puzzleString) {
     // Ensure the string has exactly 81 characters and contains only numbers or dots
