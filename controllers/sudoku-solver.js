@@ -20,7 +20,19 @@ class SudokuSolver {
     // Generate a "tree" graph structure representing each cell in the grid
     this.tree = this.buildGraph();
   }
-
+    validatePuzzle(puzzle){
+      if (!puzzle) {
+        return ({ error: 'Required field(s) missing' });
+      }
+      // puzzle less than 81 char
+      if (puzzle.length !== 81){
+        return ({ error: 'Expected puzzle to be 81 characters long' });
+      }
+      if (!/^[1-9.]+$/.test(puzzle)) {
+        return ({ error: 'Invalid characters in puzzle' });
+      }
+      return true
+    }
   // Build a graph that maps each cell to its row and column
   buildGraph() {
     let graph = [];
