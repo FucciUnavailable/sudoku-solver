@@ -15,13 +15,15 @@ module.exports = function (app) {
       if (!puzzle || !coordinate || !value) {
         return res.status(400).send({ error: 'Required field(s) missing' });
       }
+      // puzzle less than 81 char
       if (puzzle.length !== 81){
         return res.status(400).send({ error: 'Expected puzzle to be 81 characters long' });
       }
+      //coordinates are not in the range
       if (!/^[A-I][1-9]$/.test(coordinate)) {
         return res.status(400).send({ error: 'Invalid coordinate'});
       }
-
+      //wrong value
       if (!/^[1-9]$/.test(value)) {
         return res.status(400).send({ error: 'Invalid value' });
       }
