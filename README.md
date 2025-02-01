@@ -6,6 +6,7 @@
 
 This is a simple yet fun Sudoku game built using HTML, CSS, and JavaScript. The game allows users to play Sudoku directly in their web browser. The layout includes a grid, axis legends, and input cells that users can interact with to solve the puzzle. The project also features an easy-to-use UI with dynamic highlighting for valid/invalid moves, error messages, and a clean design.
 
+
 ## Features
 
 - **Interactive Sudoku Grid:** A 9x9 grid where users can input numbers to solve the puzzle.
